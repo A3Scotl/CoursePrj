@@ -5,9 +5,6 @@
  */
 
 package iuh.fit.se.ex3;
-
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -23,7 +20,7 @@ public class mainTest {
 
                 Course c1 = new Course(4,"Get API","G01","Nguyen A B");
                 courseList.addCourse(c1);
-                Course c2 = new Course(3,"Python 1","P01","Johny Z");
+                Course c2 = new Course(3,"Python 1","P01","Johny");
                 courseList.addCourse(c2);
                 Course c3 = new Course(3,"Python 2","P02","Johny C");
                 courseList.addCourse(c3);
@@ -63,18 +60,13 @@ public class mainTest {
                             break;
                         case 2:
                             header();
-                            for (Course c : courses) {
-                                System.out.println(c);
-                                System.out.print("________________________________________________________________________\n");
-                                if(c == null){
-                                    break;
-                                }
-                            }
+                            courseList.showAll();
                             break;
                         case 3:
                             System.out.print("Enter course ID to remove: ");
                             String removeId = sc.next();
-                            if(courseList.removeCourse(removeId)){
+                            boolean rs =  courseList.removeCourse(removeId);
+                            if(rs){
                                 System.out.println("Course removed");
                             }
                             else
@@ -83,13 +75,14 @@ public class mainTest {
                         case 4:
                             System.out.print("Enter course ID to find: ");
                             String findId = sc.next();
-                            if (courseList.findCourseById(findId) == null) {
+                            Course courseById = courseList.findCourseById(findId);
+                            if (courseById == null) {
                                 System.out.println("Course not found");
                             }
 
                             else{
                                 header();
-                                System.out.print(courseList.findCourseById(findId));
+                                System.out.print(courseById.toString());
                             }
                             break;
                         case 5:
@@ -103,7 +96,9 @@ public class mainTest {
                             } else {
                                 header();
                                 for(Course c : rsT){
-                                    System.out.println(c);
+                                    if(c!=null){
+                                        System.out.println(c);
+                                    }
                                 }
                             }
                             break;
@@ -117,7 +112,9 @@ public class mainTest {
                             } else {
                                 header();
                                 for(Course c : rsD){
-                                    System.out.println(c);
+                                    if(c!=null){
+                                        System.out.println(c);
+                                    }
                                 }
                             }
                             break;

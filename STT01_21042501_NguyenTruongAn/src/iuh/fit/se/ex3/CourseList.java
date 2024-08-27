@@ -78,6 +78,12 @@ public class CourseList {
     public void setCount(int count) {
         this.count = count;
     }
+    public void showAll(){
+        for(int i=0;i<count;i++){
+            System.out.println(courses[i].toString());
+        }
+    }
+
     /**
      * Adds a new course to the list.
      *
@@ -116,15 +122,16 @@ public class CourseList {
      */
     //Xoa course
     public boolean removeCourse(String id) {
-        if (id == null) return false;
-        for(int i = 0;i< count;i++){
-            if(courses[i].getId().equalsIgnoreCase(id)){
-                courses[i] = null;
+       if(findCourseById(id)!=null){
+            for(int i = 0;i< count;i++){
+                if(courses[i].getId().equalsIgnoreCase(id)){
+                    courses[i] = null;
+                    count--;
+                    return true;
+                }
             }
         }
-        return true;
-
-
+        return false;
     }
     /**
      * Finds a course by ID.
